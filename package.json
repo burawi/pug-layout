@@ -1,0 +1,24 @@
+{
+  "name": "pug-layout",
+  "version": "1.0.0",
+  "description": "A class for pug layouts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/burawi/pug-layout.git"
+  },
+  "keywords": [
+    "pug",
+    "layout",
+    "variable"
+  ],
+  "author": "Abu Rawi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/burawi/pug-layout/issues"
+  },
+  "homepage": "https://github.com/burawi/pug-layout#readme"
+}
