@@ -21,7 +21,7 @@ div(foo="bar")
 
 ```pug
 block content
-    span this is the content
+    span= text
 ```
 
 **app.js:**
@@ -31,7 +31,7 @@ var Layout = require('pug-layout');
 
 var layout = new Layout('layout.pug');
 
-layout.renderInFile('index.pug', 'index.html');
+layout.renderInFile('index.pug', 'index.html', {text: 'this is the content'});
 ```
 
 And you will get this **index.html:**
@@ -62,7 +62,7 @@ p
 **index.pug:**
 ```pug
 block content
-    span this is the content
+    span= text
     +pet('dog',5)
 ```
 
@@ -74,7 +74,7 @@ var layout = new Layout('layout.pug');
 
 layout.includeMixin('pet.pug','type,age');
 
-layout.renderInFile('index.pug', 'index.html');
+layout.renderInFile('index.pug', 'index.html', {text: 'this is the content'});
 ```
 
 And now you will get **index.html:**
@@ -109,7 +109,7 @@ var layout = new Layout('layout.pug');
 layout.includeMixin('pet.pug','type,age');
 layout.includeAtTop('head.pug');
 
-layout.renderInFile('index.pug', 'index.html');
+layout.renderInFile('index.pug', 'index.html', {text: 'this is the content'});
 ```
 
 And now you will get **index.html:**
@@ -129,5 +129,5 @@ You can get the rendered HTML without writing it in a file, using `render(filePa
 
 Ex:
 ```javascript
-var html = layout.render('index.pug');
+var html = layout.render('index.pug',locals);
 ```

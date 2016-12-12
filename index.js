@@ -64,7 +64,7 @@ Layout.prototype.includeMixin = function (filename,args,name) {
     }
 }
 
-Layout.prototype.render = function (childFilename) {
+Layout.prototype.render = function (childFilename,locals) {
     var layout = this.data;
     var childAst = getAst(childFilename);
     childAst.nodes.splice(0,0,layout);
@@ -72,17 +72,17 @@ Layout.prototype.render = function (childFilename) {
 
     var funcStr = generateCode(childAst, {
         compileDebug: false,
-        pretty: true,
+        pretty: false,
         inlineRuntimeFunctions: false,
         templateName: 'helloWorld'
     });
 
     var func = wrap(funcStr, 'helloWorld');
-    return func();
+    return func(locals);
 }
 
-Layout.prototype.renderInFile = function(src, dist){
-    var html = this.render(src);
+Layout.prototype.renderInFile = function(src, dist, locals){
+    var html = this.render(src, locals);
     fs.writeFileSync(dist, html, 'utf-8');
 }
 
