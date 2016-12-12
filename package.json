@@ -20,5 +20,14 @@
   "bugs": {
     "url": "https://github.com/burawi/pug-layout/issues"
   },
-  "homepage": "https://github.com/burawi/pug-layout#readme"
+  "homepage": "https://github.com/burawi/pug-layout#readme",
+  "dependencies": {
+    "path": "^0.12.7",
+    "pug-code-gen": "^1.1.0",
+    "pug-lexer": "^2.3.0",
+    "pug-linker": "^1.0.1",
+    "pug-load": "^2.0.3",
+    "pug-parser": "^2.0.1",
+    "pug-runtime": "^2.0.2"
+  }
 }
