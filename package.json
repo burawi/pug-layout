@@ -1,6 +1,6 @@
 {
   "name": "pug-layout",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A class for pug layouts",
   "main": "index.js",
   "scripts": {
