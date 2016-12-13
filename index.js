@@ -15,7 +15,6 @@ var getAst = function (filename) {
         lex: lex,
         parse: parse,
         resolve: function(filename, source, options) {
-            console.log('"' + filename + '" file requested from "' + source + '".');
             return load.resolve(filename, source, options);
         }
     });
