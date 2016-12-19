@@ -63,15 +63,25 @@ Layout.prototype.includeMixin = function (filename,args,name) {
     }
 }
 
-Layout.prototype.render = function (childFilename,locals) {
+Layout.prototype.render = function (child,locals) {
     var layout = this;
-    var child = new Page(childFilename);
     child.extends(layout);
     return child.render(locals);
 }
 
-Layout.prototype.renderInFile = function(src, dist, locals){
-    var html = this.render(src, locals);
+Layout.prototype.convert = function (childFilename,locals) {
+    var layout = this;
+    var child = new Page(childFilename);
+    return layout.render(child);
+}
+
+Layout.prototype.renderInFile = function(child, dist, locals){
+    var html = this.render(child, locals);
+    fs.writeFileSync(dist, html, 'utf-8');
+}
+
+Layout.prototype.convertInFile = function(src, dist, locals){
+    var html = this.convert(src, locals);
     fs.writeFileSync(dist, html, 'utf-8');
 }
 
