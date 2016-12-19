@@ -27,9 +27,9 @@ block content
 **app.js:**
 
 ```javascript
-var Layout = require('pug-layout');
+var pl = require('pug-layout');
 
-var layout = new Layout('layout.pug');
+var layout = new pl.Layout('layout.pug');
 
 layout.renderInFile('index.pug', 'index.html', {text: 'this is the content'});
 ```
@@ -68,9 +68,9 @@ block content
 
 **app.js:**
 ```javascript
-var Layout = require('pug-layout');
+var pl = require('pug-layout');
 
-var layout = new Layout('layout.pug');
+var layout = new pl.Layout('layout.pug');
 
 layout.includeMixin('pet.pug','type,age');
 
@@ -102,9 +102,9 @@ section.head I'm the header
 
 **app.js:**
 ```javascript
-var Layout = require('pug-layout');
+var pl = require('pug-layout');
 
-var layout = new Layout('layout.pug');
+var layout = new pl.Layout('layout.pug');
 
 layout.includeMixin('pet.pug','type,age');
 layout.includeAtTop('head.pug');

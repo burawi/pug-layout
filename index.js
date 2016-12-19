@@ -64,12 +64,34 @@ Layout.prototype.includeMixin = function (filename,args,name) {
 }
 
 Layout.prototype.render = function (childFilename,locals) {
-    var layout = this.data;
-    var childAst = getAst(childFilename);
-    childAst.nodes.splice(0,0,layout);
-    childAst = link(childAst);
+    var layout = this;
+    var child = new Page(childFilename);
+    child.extends(layout);
+    return child.render(locals);
+}
 
-    var funcStr = generateCode(childAst, {
+Layout.prototype.renderInFile = function(src, dist, locals){
+    var html = this.render(src, locals);
+    fs.writeFileSync(dist, html, 'utf-8');
+}
+
+var Page = function (filename) {
+    this.data = getAst(filename);
+}
+
+Page.prototype.extends = function (layout) {
+    this.data.nodes.splice(0,0,layout.data);
+}
+
+Page.prototype.extendsFile = function (layoutFilename) {
+    var layout = new Layout(layoutFilename);
+    this.extends(layout);
+}
+
+Page.prototype.render = function (locals) {
+    var ast = link(this.data);
+
+    var funcStr = generateCode(ast, {
         compileDebug: false,
         pretty: false,
         inlineRuntimeFunctions: false,
@@ -80,9 +102,12 @@ Layout.prototype.render = function (childFilename,locals) {
     return func(locals);
 }
 
-Layout.prototype.renderInFile = function(src, dist, locals){
-    var html = this.render(src, locals);
+Page.prototype.renderInFile = function (dist,locals) {
+    var html = this.render(locals);
     fs.writeFileSync(dist, html, 'utf-8');
 }
 
-module.exports = Layout;
+module.exports = {
+    Layout: Layout,
+    Page: Page
+};
