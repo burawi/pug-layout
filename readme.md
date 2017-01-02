@@ -125,7 +125,7 @@ And now you will get **index.html:**
 ```
 
 ## Get HTML
-You can get the rendered HTML without writing it in a file, using `render(filePath)` instead of `renderInFile(filePath,dist)`.
+You can get the rendered HTML without writing it in a file, using `convert(filePath)` instead of `convertInFile(filePath,dist)`.
 
 Ex:
 ```javascript
