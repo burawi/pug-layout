@@ -31,7 +31,7 @@ var pl = require('pug-layout');
 
 var layout = new pl.Layout('layout.pug');
 
-layout.renderInFile('index.pug', 'index.html', {text: 'this is the content'});
+layout.convertInFile('index.pug', 'index.html', {text: 'this is the content'});
 ```
 
 And you will get this **index.html:**
@@ -74,7 +74,7 @@ var layout = new pl.Layout('layout.pug');
 
 layout.includeMixin('pet.pug','type,age');
 
-layout.renderInFile('index.pug', 'index.html', {text: 'this is the content'});
+layout.convertInFile('index.pug', 'index.html', {text: 'this is the content'});
 ```
 
 And now you will get **index.html:**
@@ -109,7 +109,7 @@ var layout = new pl.Layout('layout.pug');
 layout.includeMixin('pet.pug','type,age');
 layout.includeAtTop('head.pug');
 
-layout.renderInFile('index.pug', 'index.html', {text: 'this is the content'});
+layout.convertInFile('index.pug', 'index.html', {text: 'this is the content'});
 ```
 
 And now you will get **index.html:**
@@ -129,5 +129,50 @@ You can get the rendered HTML without writing it in a file, using `render(filePa
 
 Ex:
 ```javascript
-var html = layout.render('index.pug',locals);
+var html = layout.convert('index.pug',locals);
+```
+
+# Page Class
+You can use page classes too:
+
+```javascript
+var page = new pl.Page('index.pug');
+```
+
+And extend it programatically:
+
+```javascript
+page.extends(layout);
+```
+
+Or extend it from a file path:
+
+```javascript
+page.extendsFile('layout.pug');
+```
+
+Get the HTML:
+
+```javascript
+var html = page.render({text: 'this is the content'});
+```
+
+Or render directly into a file:
+
+```javascript
+page.renderInFile('index.html',{text: 'this is the content'});
+```
+
+## render Page with Layout
+
+Instead of using 'convert' and file path you can use a Page instance with Layouts:
+
+```javascript
+var html = layout.render(page, {text: 'this is the content'});
+```
+
+Or render directly into a file:
+
+```javascript
+layout.renderInFile(page, 'index.html', {text: 'this is the content'});
 ```
